@@ -14,6 +14,8 @@
 	"require": {
 		"php": "^7.1 || 8.0.*",
 		"ext-json": "*",
+		"dan-da/highlight.php": "^9.15",
+		"laminas/laminas-code": "^3.4 || ^4.0",
 		"psr/event-dispatcher": "^1.0",
 		"symfony/config": "^4.4 || ^5.0",
 		"symfony/dependency-injection": "^4.4 || ^5.0",
