@@ -31,6 +31,7 @@
 		"mikey179/vfsstream": "^1.6",
 		"phpspec/prophecy-phpunit": "^2.0",
 		"phpstan/phpstan": "^0.12",
+		"phpunit/phpcov": "^8.2",
 		"phpunit/phpunit": "^9.3",
 		"psr/log": "^1.1",
 		"saschaegerer/phpstan-typo3": "^0.13",
@@ -82,8 +83,19 @@
 			"@sca:php"
 		],
 		"sca:php": "phpstan analyse -c phpstan.neon",
-		"test": "phpunit -c phpunit.xml",
-		"test:ci": "phpunit -c phpunit.ci.xml"
+		"test": [
+			"@test:functional",
+			"@test:unit"
+		],
+		"test:ci": [
+			"@test:ci:functional",
+			"@test:ci:unit"
+		],
+		"test:ci:functional": "phpunit -c phpunit.ci.functional.xml",
+		"test:ci:merge": "phpcov merge --html .Build/log/coverage/html/_merged --clover .Build/log/coverage/clover.xml --text php://stdout .Build/log/coverage/php",
+		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
+		"test:functional": "phpunit -c phpunit.functional.xml",
+		"test:unit": "phpunit -c phpunit.unit.xml"
 	},
 	"support": {
 		"issues": "https://github.com/CPS-IT/handlebars/issues",
