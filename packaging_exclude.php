@@ -43,7 +43,7 @@ return [
         'gitattributes',
         'gitignore',
         'packaging_exclude.php',
-        'php_cs',
+        'php-cs-fixer.php',
         'phpstan.neon',
         'phpunit.ci.functional.xml',
         'phpunit.ci.unit.xml',
