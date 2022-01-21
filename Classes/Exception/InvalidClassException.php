@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars".
  *
- * Copyright (C) 2020 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +21,30 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3Handlebars\Tests\Unit\Fixtures\Classes\Presenter;
-
-use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
-use Fr\Typo3Handlebars\Presenter\AbstractPresenter;
+namespace Fr\Typo3Handlebars\Exception;
 
 /**
- * DummyPresenter
+ * InvalidClassException
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
  */
-final class DummyPresenter extends AbstractPresenter
+final class InvalidClassException extends \RuntimeException
 {
-    public function present(ProviderResponseInterface $data): string
+    /**
+     * @param class-string $className
+     * @return self
+     */
+    public static function create(string $className): self
     {
-        return json_encode($data->toArray()) ?: '';
+        return new self(sprintf('The class "%s" does not exist.', $className), 1638182580);
+    }
+
+    public static function forService(string $serviceId): self
+    {
+        return new self(
+            sprintf('Class name of service "%s" cannot be resolved or does not exist.', $serviceId),
+            1638183576
+        );
     }
 }

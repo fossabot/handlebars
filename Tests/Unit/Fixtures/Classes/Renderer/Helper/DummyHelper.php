@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the TYPO3 CMS extension "handlebars".
  *
- * Copyright (C) 2020 Elias Häußler <e.haeussler@familie-redlich.de>
+ * Copyright (C) 2021 Elias Häußler <e.haeussler@familie-redlich.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +21,37 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Fr\Typo3Handlebars\Tests\Unit\Fixtures\Classes\Presenter;
+namespace Fr\Typo3Handlebars\Tests\Unit\Fixtures\Classes\Renderer\Helper;
 
-use Fr\Typo3Handlebars\Data\Response\ProviderResponseInterface;
-use Fr\Typo3Handlebars\Presenter\AbstractPresenter;
+use Fr\Typo3Handlebars\Renderer\Helper\HelperInterface;
 
 /**
- * DummyPresenter
+ * DummyHelper
  *
  * @author Elias Häußler <e.haeussler@familie-redlich.de>
  * @license GPL-2.0-or-later
+ * @internal
  */
-final class DummyPresenter extends AbstractPresenter
+final class DummyHelper implements HelperInterface
 {
-    public function present(ProviderResponseInterface $data): string
+    public function __invoke(): string
     {
-        return json_encode($data->toArray()) ?: '';
+        return 'foo';
+    }
+
+    public static function staticExecute(): string
+    {
+        return 'foo';
+    }
+
+    public function execute(): string
+    {
+        return 'foo';
+    }
+
+    /* @phpstan-ignore-next-line */
+    private function executeInternal(): string
+    {
+        return 'foo';
     }
 }

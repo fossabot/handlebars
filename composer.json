@@ -1,16 +1,21 @@
 {
 	"name": "cpsit/typo3-handlebars",
-	"type": "typo3-cms-extension",
 	"description": "Handlebars rendering extension for projects built with TYPO3 CMS",
 	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
 	"authors": [
 		{
 			"name": "Elias Häußler",
 			"email": "e.haeussler@familie-redlich.de",
-			"homepage": "https://www.familie-redlich.de",
+			"homepage": "https://www.cps-it.de",
 			"role": "Maintainer"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/CPS-IT/handlebars/issues",
+		"source": "https://github.com/CPS-IT/handlebars",
+		"docs": "https://docs.typo3.org/p/cpsit/typo3-handlebars/master/en-us/"
+	},
 	"require": {
 		"php": "^7.1 || 8.0.*",
 		"ext-json": "*",
@@ -20,8 +25,9 @@
 		"symfony/config": "^4.4 || ^5.0",
 		"symfony/dependency-injection": "^4.4 || ^5.0",
 		"symfony/polyfill-php80": "^1.23",
-		"typo3/cms-core": "^10.4 || ^11.5",
-		"typo3/cms-frontend": "^10.4 || ^11.5",
+		"typo3/cms-core": "~10.4.0 || ~11.5.0",
+		"typo3/cms-extbase": "~10.4.0 || ~11.5.0",
+		"typo3/cms-frontend": "~10.4.0 || ~11.5.0",
 		"zordius/lightncandy": "^1.2"
 	},
 	"require-dev": {
@@ -30,25 +36,14 @@
 		"jangregor/phpstan-prophecy": "^1.0",
 		"mikey179/vfsstream": "^1.6",
 		"phpspec/prophecy-phpunit": "^2.0",
-		"phpstan/phpstan": "^1.1",
+		"phpstan/phpstan": "^1.2",
 		"phpunit/phpcov": "^8.2",
-		"phpunit/phpunit": "^9.3",
-		"psr/log": "^1.1",
+		"phpunit/phpunit": "^9.5",
+		"psr/log": "^1.1 || ^2.0 || ^3.0",
 		"saschaegerer/phpstan-typo3": "^1.0",
 		"symfony/event-dispatcher": "^4.4 || ^5.0",
-		"typo3/coding-standards": "^0.4.0",
-		"typo3/testing-framework": "^6.11.2"
-	},
-	"config": {
-		"bin-dir": ".Build/bin",
-		"sort-packages": true,
-		"vendor-dir": ".Build/vendor"
-	},
-	"extra": {
-		"typo3/cms": {
-			"extension-key": "handlebars",
-			"web-dir": ".Build/web"
-		}
+		"typo3/coding-standards": "^0.5.0",
+		"typo3/testing-framework": "^6.15"
 	},
 	"autoload": {
 		"psr-4": {
@@ -58,6 +53,22 @@
 	"autoload-dev": {
 		"psr-4": {
 			"Fr\\Typo3Handlebars\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"ergebnis/composer-normalize": true
+		},
+		"bin-dir": ".Build/bin",
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "handlebars",
+			"web-dir": ".Build/web"
 		}
 	},
 	"scripts": {
@@ -96,10 +107,5 @@
 		"test:ci:unit": "phpunit -c phpunit.ci.unit.xml",
 		"test:functional": "phpunit -c phpunit.functional.xml",
 		"test:unit": "phpunit -c phpunit.unit.xml"
-	},
-	"support": {
-		"issues": "https://github.com/CPS-IT/handlebars/issues",
-		"source": "https://github.com/CPS-IT/handlebars",
-		"docs": "https://docs.typo3.org/p/cpsit/typo3-handlebars/master/en-us/"
 	}
 }
